@@ -1,0 +1,5 @@
+--compilers coffee:coffee-script/register,cjsx:coffee-react/register
+--recursive
+--colors
+--reporter list
+--require test/setup

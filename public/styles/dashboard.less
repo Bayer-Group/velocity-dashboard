@@ -1,0 +1,184 @@
+
+.dashboard {
+    background: #ececec;
+    overflow-y: auto;
+
+    .edit-button {
+        background-color: #2980b9;
+        position: fixed;
+        z-index: 2;
+        height: 60px;
+        width: 60px;
+        border-radius: 50px;
+        right: 26px;
+        top: 53px;
+        box-shadow: 4px 6px 6px #b7b7b7;
+        cursor: pointer;
+        .fa {
+            color: white;
+            font-size: 25pt;
+            margin-top: 13px;
+            margin-left: 10px;
+        }
+    }
+
+    .dashboard-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow-y: auto;
+    }
+
+    .dashboard-content {
+        margin: 18px auto;
+        position: relative;
+
+        &.columns-1 {
+            .widget {
+                width: 100%;
+            }
+        }
+    }
+
+    .title {
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        padding: 8px 14px;
+        vertical-align: bottom;
+        font-size: 19pt;
+        text-transform: uppercase;
+        color: gray;
+    }
+
+    .widget {
+        background: white;
+        box-shadow: 1px 1px 5px #b7b7b7;
+        display: inline-block;
+        position: absolute;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+        padding: 8px;
+        overflow: hidden;
+        @animation-speed: .5s;
+        transition: width @animation-speed, height @animation-speed, top @animation-speed, left @animation-speed;
+
+        .edit-widget-button {
+            position: absolute;
+            right: 30px;
+            top: 10px;
+            color: #a7a7a7;
+            cursor: pointer;
+        }
+
+        .hide-widget-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            color: #a7a7a7;
+            cursor: pointer;
+        }
+
+        .widgetTitle {
+            position: absolute;
+            z-index: 1;
+            font-size: 18px;
+            padding: 10px;
+            color: gray;
+        }
+
+        .widgetBody {
+            position: absolute;
+            top: 35px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+
+    .add-widget-panel {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 200px;
+        bottom: 0;
+        background: #c3c3c3;
+        padding: 11px;
+        white-space: nowrap;
+        overflow-x: auto;
+        z-index: 10;
+        opacity: .98;
+    }
+
+    .widget-panel-enter {
+        bottom: -200px;
+        &.widget-panel-enter-active {
+            bottom: 0;
+            transition: bottom .25s ease-in;
+        }
+    }
+    .widget-panel-leave {
+        bottom: 0;
+        &.widget-panel-leave-active {
+            bottom: -200px;
+            transition: bottom .25s ease-in;
+        }
+    }
+
+    .widget-preview {
+        background: #ececec;
+        display: inline-block;
+        height: 148px;
+        width: 220px;
+        border: 1px solid #adadad;
+        margin: 5px 10px;
+        padding: 5px;
+        opacity: 0.5;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        &:hover {
+            background: white;
+            opacity: 1.0;
+            -webkit-filter: none;
+            filter: none;
+            &:after {
+                position: absolute;
+                font: normal normal normal 14px/1 FontAwesome;
+                -webkit-font-smoothing: antialiased;
+                content: "\f055";
+                font-size: 31pt;
+                text-align: center;
+                right: 8px;
+                bottom: 8px;
+                color: #27ae60;
+            }
+        }
+        .default-preview {
+            text-align: center;
+            padding-top: 60px;
+            color: gray;
+        }
+        .widgetTitle {
+            position: absolute;
+            z-index: 1;
+            font-size: 15px;
+            padding: 6px;
+            color: gray;
+        }
+
+        .widgetBody {
+            position: absolute;
+            top: 35px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}

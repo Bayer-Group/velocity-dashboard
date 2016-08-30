@@ -1,0 +1,50 @@
+# OS X
+.DS_Store*
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+
+# npm
+node_modules
+*.log
+*.gz
+
+
+# Coveralls
+coverage
+
+# Benchmarking
+benchmarks/graphs
+
+/.idea
+.idea
+/.idea_modules
+*.iml
+*.tgz
+
+
+/public/scripts/example.js
+/public/scripts/example.js.map
+/public/scripts/main.js
+/public/scripts/main.js.map
+/public/styles/style.css
+
+
+/dist/fonts/*.otf
+/dist/fonts/*.eot
+/dist/fonts/*.svg
+/dist/fonts/*.ttf
+/dist/fonts/*.woff
+/dist/fonts/*.woff2
+
+/dist/example.*
+/dist/main.*

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Velocity Dashboard by ui-components</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Velocity Dashboard</h1>
+        <h2>React dashboard component</h2>
+        <a href="https://github.com/MonsantoCo/velocity-dashboard/dist/example.html" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="velocity-dashboard" class="anchor" href="#velocity-dashboard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Velocity Dashboard</h1>
+
+<p>Velocity Dashboard is a React component for presenting interactive dashboard components.  </p>
+
+<p><img src="https://monsantoco.github.io/velocity-dashboard/dashboard.png" width="50%" height="50%"></p>
+
+<h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h3>
+
+<ul>
+<li>Responsive design </li>
+<li>User can add/remove instances </li>
+<li>Allows multiple instances of each widget</li>
+<li>Widgets define relative height &amp; width in the grid</li>
+<li>Configurable column and row height</li>
+<li>Easily re-styled</li>
+</ul>
+
+<h3>
+<a id="links" class="anchor" href="#links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Links</h3>
+
+<ul>
+<li><a href="https://github.com/MonsantoCo/velocity-dashboard">Interactive Demo</a></li>
+<li><a href="DEVELOPERS.md">Developers Notes</a></li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h3>
+
+<p>The default style assumes font-awesome is installed.</p>
+
+<h3>
+<a id="dashboard" class="anchor" href="#dashboard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dashboard</h3>
+
+<p>For best results, use CSS to give the Dashboard a definable size (either via absolute positioning or by setting height/width).</p>
+
+<div class="highlight highlight-source-coffee"><pre><span class="pl-en">getInitialState</span><span class="pl-k">:</span> <span class="pl-k"><span class="pl-k">-&gt;</span></span>
+    <span class="pl-v"><span class="pl-v">config:</span></span> [
+        {
+            <span class="pl-v"><span class="pl-v">widgetId:</span></span> <span class="pl-s"><span class="pl-pds">'</span>weather<span class="pl-pds">'</span></span>
+            <span class="pl-v"><span class="pl-v">instanceId:</span></span> <span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>
+            <span class="pl-v"><span class="pl-v">config:</span></span> <span class="pl-v"><span class="pl-v">location:</span></span> <span class="pl-s"><span class="pl-pds">'</span>orl<span class="pl-pds">'</span></span>
+        }
+    ]
+
+<span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k"><span class="pl-k">-&gt;</span></span>
+    <span class="pl-k">&lt;</span><span class="pl-en">Dashboard </span><span class="pl-v"><span class="pl-v">className<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>example-dash<span class="pl-pds">'</span></span> <span class="pl-v"><span class="pl-v">title<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>Dashboard Title<span class="pl-pds">'</span></span> 
+            <span class="pl-v"><span class="pl-v">config<span class="pl-k">=</span></span></span>{<span class="pl-smi">@state</span>.config} <span class="pl-v"><span class="pl-v">onConfigChange<span class="pl-k">=</span></span></span>{<span class="pl-smi">@configChange</span>}<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-en">Widget </span><span class="pl-v"><span class="pl-v">id<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>weather<span class="pl-pds">'</span></span> <span class="pl-v"><span class="pl-v">contentComp<span class="pl-k">=</span></span></span>{weatherWidget.Content} 
+            <span class="pl-v"><span class="pl-v">configComp<span class="pl-k">=</span></span></span>{weatherWidget.Config} <span class="pl-v"><span class="pl-v">previewComp<span class="pl-k">=</span></span></span>{weatherWidget.Preview} <span class="pl-k">/&gt;</span>
+        <span class="pl-k">...</span>
+    <span class="pl-k">&lt;/</span>Dashboard<span class="pl-k">&gt;</span></pre></div>
+
+<h4>
+<a id="properties" class="anchor" href="#properties" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Properties</h4>
+
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th align="center">default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td align="center">-</td>
+<td>if provided, a title bar will be rendered at the top with the given text</td>
+</tr>
+<tr>
+<td>config</td>
+<td align="center">-</td>
+<td>(required) contains the widget instances and the configuration for the instances.  For the sake of usability, a reasonable initial value should be provided.  If not, the user will not have any widgets in the dashboard until they add them.  This data structure is what you would save in the user's preferences.</td>
+</tr>
+<tr>
+<td>onConfigChange</td>
+<td align="center">-</td>
+<td>fires when the user updates the widgets on the screen (by adding/removing them or by configuring one)</td>
+</tr>
+<tr>
+<td>widgetHeight</td>
+<td align="center">250</td>
+<td>height of a single row in pixels</td>
+</tr>
+<tr>
+<td>widgetWidth</td>
+<td align="center">250</td>
+<td>width of a single column in pixels</td>
+</tr>
+<tr>
+<td>widgetMargin</td>
+<td align="center">15</td>
+<td>gap between widgets in pixels</td>
+</tr>
+<tr>
+<td>titleHeight</td>
+<td align="center">50</td>
+<td>height of the title</td>
+</tr>
+<tr>
+<td>maxColumns</td>
+<td align="center">5</td>
+<td>when displayed on a high-resolution (wide) screen, limit the number of columns to this value (for usability/ascetics)</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="config" class="anchor" href="#config" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>config</h4>
+
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>widgetId</td>
+<td>(required) Reefers to the Widget's <code>id</code>.</td>
+</tr>
+<tr>
+<td>instanceId</td>
+<td>(required) Uniquely identifies the instance and is used as a React key.</td>
+</tr>
+<tr>
+<td>config</td>
+<td>Passed to the component as configuration</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="widget" class="anchor" href="#widget" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Widget</h3>
+
+<p>Each Widget is simply three components representing the three states of a component and some configuration details:</p>
+
+<div class="highlight highlight-source-coffee"><pre><span class="pl-k">&lt;</span><span class="pl-en">Widget </span><span class="pl-v"><span class="pl-v">id<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>days-since-accident<span class="pl-pds">'</span></span>
+    <span class="pl-v"><span class="pl-v">contentComp<span class="pl-k">=</span></span></span>{<span class="pl-k">-&gt;</span> <span class="pl-k">&lt;</span><span class="pl-en">div </span><span class="pl-v"><span class="pl-v">className<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>days-since-last<span class="pl-pds">'</span></span><span class="pl-k">&gt;&lt;</span><span class="pl-en">div </span><span class="pl-v"><span class="pl-v">className<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>days<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span><span class="pl-c1">13</span><span class="pl-k">&lt;/</span>div<span class="pl-k">&gt;&lt;</span><span class="pl-en">div </span><span class="pl-v"><span class="pl-v">className<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span><span class="pl-en">days since last </span>accident<span class="pl-k">&lt;/</span>div<span class="pl-k">&gt;&lt;/</span>div<span class="pl-k">&gt;</span>}
+    <span class="pl-v"><span class="pl-v">previewComp<span class="pl-k">=</span></span></span>{<span class="pl-k">-&gt;</span> <span class="pl-k">&lt;</span><span class="pl-en">div </span><span class="pl-v"><span class="pl-v">className<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>days-since-last preview<span class="pl-pds">'</span></span><span class="pl-k">&gt;&lt;</span><span class="pl-en">div </span><span class="pl-v"><span class="pl-v">className<span class="pl-k">=</span></span></span><span class="pl-s"><span class="pl-pds">'</span>days<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span><span class="pl-c1">100</span><span class="pl-k">&lt;</span><span class="pl-sr"><span class="pl-pds">/</span>div&gt;&lt;div className='text'&gt;days since last accident&lt;<span class="pl-pds">/</span></span>div<span class="pl-k">&gt;&lt;</span><span class="pl-sr"><span class="pl-pds">/</span>div&gt;}<span class="pl-pds">/</span></span><span class="pl-k">&gt;</span></pre></div>
+
+<h4>
+<a id="properties-1" class="anchor" href="#properties-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Properties</h4>
+
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th align="center">default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td align="center">-</td>
+<td>Unique identifier for this widget.  Used to in the Dashboard state (referred to as <code>widgetId</code>).</td>
+</tr>
+<tr>
+<td>width</td>
+<td align="center">1</td>
+<td>The number of columns this Widget will span</td>
+</tr>
+<tr>
+<td>height</td>
+<td align="center">1</td>
+<td>The number of rows this Widget will span</td>
+</tr>
+<tr>
+<td>contentComp</td>
+<td align="center">-</td>
+<td>The widget as normally displayed on the dashboard</td>
+</tr>
+<tr>
+<td>previewComp</td>
+<td align="center">-</td>
+<td>(optional) The widget as displayed in the 'add widget' panel (usually a simplified version which doesn't depend on external data).  While optional, the default is simply a 'No Preview' message.  A previewComp is recommended for all Widgets.</td>
+</tr>
+<tr>
+<td>configComp</td>
+<td align="center">-</td>
+<td>(optional) The configuration screen</td>
+</tr>
+</tbody>
+</table>
+        </section>
+
+        <aside id="sidebar">
+
+          <p class="repo-owner"><a href="https://github.com/MonsantoCo/velocity-dashboard"></a> is maintained by <a href="https://github.com/scruffles">Bryan Young</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
