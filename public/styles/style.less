@@ -1,0 +1,116 @@
+@import "dashboard";
+@appTitleBarHeight: 40px;
+@import "../../node_modules/weather-icons/weather-icons/weather-icons.less";
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+.app-navbar {
+    background: #2980b9;
+    height: 40px;
+    color: white;
+    padding: 5px 13px;
+    font-size: 20px;
+}
+
+.example-dash {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: @appTitleBarHeight;
+    bottom: 0;
+    padding-top: 50px;
+}
+
+.weather-example {
+    .city {
+        font-size: 18pt;
+        padding: 10px;
+        position: absolute;
+        color: gray;
+    }
+    .wi {
+        font-size: 70pt;
+        padding-top: 80px;
+        text-align: center;
+        width: 100%;
+        color: #2980b9;
+    }
+    &.preview {
+        .city {
+            font-size: 14pt;
+        }
+        .wi {
+            font-size: 50pt;
+            padding-top: 45px;
+        }
+    }
+}
+
+.weather-example-config {
+    padding: 11px;
+    .city {
+        padding-bottom: 10px;
+    }
+}
+
+.days-since-last {
+    .days {
+        font-size: 75pt;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: -17px;
+        padding-top: 30px;
+    }
+    .text {
+        font-size: 12pt;
+        text-align: center;
+    }
+    &.preview {
+        .days {
+            padding-top: 0;
+            font-size: 55pt;
+        }
+        .text {
+            font-size: 9pt;
+        }
+    }
+}
+
+.activity-feed {
+    font-size: 90%;
+    ul {
+        list-style: none;
+        margin-top: 16px;
+        padding-left: 18px;
+        padding-right: 14px;
+        li {
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+    }
+    .user {
+        //float: left;
+    }
+    .time {
+        float: right;
+    }
+    .activity {
+
+    }
+}
+
+.fa-thumbs-up {
+    font-size: 149px;
+    text-align: center;
+    width: 100%;
+    margin-top: 26px;
+    color: #5e89a7;
+    &.preview {
+        font-size: 97px;
+        margin-top: -4px;
+    }
+}

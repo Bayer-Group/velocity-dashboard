@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+require('coffee-script');
+require('coffee-script/register');
+
+if ( process.env.NODE_ENV !== 'production' ) {
+    if ( !require('piping')({ hook: true, ignore: /(public)/ }) ) {
+        return;
+    }
+}
+
+require('../server');
