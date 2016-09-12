@@ -1,5 +1,5 @@
 {
-  "name": "@monsantoit/velocity-dashboard",
+  "name": "velocity-dashboard",
   "version": "1.0.0",
   "scripts": {
     "start": "NODE_ENV=production node ./bin/www",
