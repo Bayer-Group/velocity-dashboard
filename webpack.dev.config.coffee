@@ -1,6 +1,6 @@
 _ = require 'underscore'
 
-module.exports = _(require './webpack.config')
+module.exports = _(require('./webpack.config')[0])
 .chain()
 .clone()
 .extend

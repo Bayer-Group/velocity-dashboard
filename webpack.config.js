@@ -1,9 +1,7 @@
 const webpack = require('webpack');
-module.exports = {
-    entry: {
-        example: "./public/scripts/example/main",
-        main: ["./public/scripts/dashboard/Dashboard"]
-    },
+const _ = require('underscore');
+
+const base = {
     module: {
         loaders: [
             {test: /.json/, loader: 'json'},
@@ -20,17 +18,33 @@ module.exports = {
             '.cjsx'
         ]
     },
-    devtool: "#source-map",
+};
+
+const example = _.extend({}, base, {
+    entry: {
+        example: "./public/scripts/example/main"
+    },
     output: {
         path: "./dist/",
-        filename: '[name].js'
+        filename: '[name].js',
+        libraryTarget: 'var'
+    }
+});
+
+const lib = _.extend({}, base, {
+    entry: {
+        main: ["./public/scripts/dashboard/index"]
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({minimize: true})
-    ]
-};
+    output: {
+        path: "./dist/",
+        filename: '[name].js',
+        libraryTarget: 'commonjs2'
+    },
+    externals: {
+        'react': 'React',
+        'react-dom' : 'react-dom',
+        'react-addons-css-transition-group' : 'react-addons-css-transition-group'
+    }
+});
+
+module.exports = [example, lib];

@@ -24,6 +24,8 @@ Velocity Dashboard is a React component for presenting interactive dashboard com
 
 The default style assumes font-awesome is installed.
 
+Include the velocity-dashboard css in your page.
+
 ### Dashboard
 
 For best results, use CSS to give the Dashboard a definable size (either via absolute positioning or by setting height/width).
