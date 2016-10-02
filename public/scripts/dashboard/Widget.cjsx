@@ -9,7 +9,9 @@ module.exports = React.createClass
     hide: ->
 
     render: ->
-        {instanceId, height = 1, width = 1, col, row, dashEditable, config, onConfigChange, onHide, contentComp, configComp, sizeConfig, columnCount} = @props
+        {instanceId, height, width, col, row, dashEditable, config, onConfigChange, onHide, contentComp, configComp, sizeConfig, columnCount} = @props
+        width = config?.width or width or 1
+        height = config?.height or height or 1
         {editMode} = @state
         {widgetHeight, widgetWidth, widgetMargin, titleHeight} = sizeConfig
 

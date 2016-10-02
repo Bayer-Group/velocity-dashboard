@@ -85,8 +85,8 @@ Each Widget is simply three components representing the three states of a compon
 | property         | default | description  |
 | ---------------- |:---:| -----|
 | id               | -   | Unique identifier for this widget.  Used to in the Dashboard state (referred to as `widgetId`). | 
-| width            | 1   | The number of columns this Widget will span |
-| height           | 1   | The number of rows this Widget will span |
+| width            | 1*  | The number of columns this Widget will span. The default can be overridden as a property here, or in the widget configuration by adding a property `width`. |
+| height           | 1*  | The number of rows this Widget will span. The default can be overridden as a property here, or in the widget configuration by adding a property `height`. |
 | contentComp      | -   | The widget as normally displayed on the dashboard |
 | previewComp      | -   | (optional) The widget as displayed in the 'add widget' panel (usually a simplified version which doesn't depend on external data).  While optional, the default is simply a 'No Preview' message.  A previewComp is recommended for all Widgets. |
 | configComp      | -   | (optional) The configuration screen |
