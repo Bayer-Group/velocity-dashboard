@@ -31,7 +31,13 @@ module.exports = React.createClass
             }
             {
                 comp = if dashEditable and editMode
-                    if configComp then React.createElement(configComp, {instanceId, config, onConfigChange}) else <div/>
+                    if configComp
+                        <div>
+                            <i className="fa fa-lg fa-cog background-watermark"></i>
+                            {React.createElement(configComp, {instanceId, config, onConfigChange})}
+                        </div>
+                    else
+                        <div/>
                 else
                     if contentComp then React.createElement(contentComp, {instanceId, config}) else <div/>
             }

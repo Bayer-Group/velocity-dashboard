@@ -997,3 +997,10 @@ body {
   font-size: 97px;
   margin-top: -4px;
 }
+.background-watermark {
+  font-size: 268px;
+  position: absolute;
+  bottom: -34px;
+  right: -43px;
+  color: rgba(0, 0, 0, 0.06);
+}
