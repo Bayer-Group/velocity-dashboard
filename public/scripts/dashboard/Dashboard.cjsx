@@ -80,6 +80,7 @@ module.exports = React.createClass
 
     render: ->
         {children, title, className, config, widgetHeight = defaults.widgetHeight, widgetWidth = defaults.widgetWidth, widgetMargin = defaults.margin, titleHeight = 50, maxColumns = 5} = @props
+        children = [].concat(children)
         {editMode, componentWidth} = @state
         sizeConfig = {widgetHeight, widgetWidth, widgetMargin, titleHeight, maxColumns}
 
