@@ -1,11 +1,20 @@
 React = require 'react'
 
 module.exports = React.createClass
+
     displayName: 'Widget'
+
+    propTypes:
+        contentComp: React.PropTypes.func
+        configComp: React.PropTypes.func
+        previewComp: React.PropTypes.func
+
     getInitialState: ->
         editMode: false
+
     toggleEditMode: ->
         @setState editMode: !@state.editMode
+
     hide: ->
 
     render: ->
