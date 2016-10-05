@@ -30,21 +30,18 @@ module.exports = React.createClass
 
     childComponentsForConfig: (components, config, editMode, sizeConfig, columnCount) ->
         componentsById = getComponentsById(components)
-        instances = config.map (widget) =>
+        config.map (widget) =>
             instanceConfig = (config.find (c) -> c.instanceId is widget.instanceId).config
-            if instanceConfig
-                withPositions = @layout.setWidgetPosition(componentsById[widget.widgetId], instanceConfig)
-                React.cloneElement withPositions,
-                    dashEditable: editMode
-                    key: widget.instanceId
-                    onConfigChange: @configChange
-                    onHide: => @hideWidget(widget.instanceId)
-                    config: instanceConfig
-                    instanceId: widget.instanceId
-                    sizeConfig: sizeConfig
-                    columnCount: columnCount
-        _(instances).compact()
-
+            withPositions = @layout.setWidgetPosition(componentsById[widget.widgetId], instanceConfig)
+            React.cloneElement withPositions,
+                dashEditable: editMode
+                key: widget.instanceId
+                onConfigChange: @configChange
+                onHide: => @hideWidget(widget.instanceId)
+                config: instanceConfig
+                instanceId: widget.instanceId
+                sizeConfig: sizeConfig
+                columnCount: columnCount
 
     toggleEditMode: ->
         @setState editMode: !@state.editMode
@@ -83,8 +80,8 @@ module.exports = React.createClass
 
     render: ->
         {children, title, className, config, widgetHeight = defaults.widgetHeight, widgetWidth = defaults.widgetWidth, widgetMargin = defaults.margin, titleHeight = 50, maxColumns = 5} = @props
-        {editMode, componentWidth} = @state
         children = [].concat(children)
+        {editMode, componentWidth} = @state
         sizeConfig = {widgetHeight, widgetWidth, widgetMargin, titleHeight, maxColumns}
 
         @layout = layout = new Layout(sizeConfig)
