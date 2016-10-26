@@ -93,7 +93,7 @@ module.exports = React.createClass
         if layout.columnCount() is 1
             contentWidth = '90%'
 
-        <div className={"dashboard #{className}"}>
+        <div className={"dashboard #{className} #{if editMode then 'editing' else ''}"}>
             <Title height={titleHeight}>{title}</Title>
             <div className="edit-button #{if editMode then 'editing' else ''}" onClick={@toggleEditMode}>
                 <i className="fa fa-cogs" />

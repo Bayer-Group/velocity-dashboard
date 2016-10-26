@@ -32,6 +32,9 @@
   right: 0;
   overflow-y: auto;
 }
+.dashboard.editing .dashboard-container {
+  bottom: 200px;
+}
 .dashboard .dashboard-content {
   margin: 18px auto;
   position: relative;
@@ -110,7 +113,7 @@
   opacity: .98;
 }
 .dashboard .widget-panel-enter {
-  bottom: -200px;
+  bottom: calc(-200px);
 }
 .dashboard .widget-panel-enter.widget-panel-enter-active {
   bottom: 0;
@@ -120,7 +123,7 @@
   bottom: 0;
 }
 .dashboard .widget-panel-leave.widget-panel-leave-active {
-  bottom: -200px;
+  bottom: calc(-200px);
   transition: bottom 0.25s ease-in;
 }
 .dashboard .widget-preview {

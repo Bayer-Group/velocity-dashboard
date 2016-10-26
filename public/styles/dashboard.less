@@ -1,3 +1,4 @@
+@addPanelHeight: 200px;
 
 .dashboard {
     background: #ececec;
@@ -33,6 +34,10 @@
         left: 0;
         right: 0;
         overflow-y: auto;
+    }
+
+    &.editing .dashboard-container {
+        bottom: @addPanelHeight;
     }
 
     .dashboard-content {
@@ -114,7 +119,7 @@
         position: absolute;
         left: 0;
         right: 0;
-        height: 200px;
+        height: @addPanelHeight;
         bottom: 0;
         background: #c3c3c3;
         padding: 11px;
@@ -125,7 +130,7 @@
     }
 
     .widget-panel-enter {
-        bottom: -200px;
+        bottom: calc(0 - @addPanelHeight);
         &.widget-panel-enter-active {
             bottom: 0;
             transition: bottom .25s ease-in;
@@ -134,7 +139,7 @@
     .widget-panel-leave {
         bottom: 0;
         &.widget-panel-leave-active {
-            bottom: -200px;
+            bottom: calc(0 - @addPanelHeight);
             transition: bottom .25s ease-in;
         }
     }
