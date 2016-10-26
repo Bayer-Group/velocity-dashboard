@@ -15,6 +15,10 @@ module.exports = React.createClass
     toggleEditMode: ->
         @setState editMode: !@state.editMode
 
+    componentWillReceiveProps: (nextProps) ->
+        if !nextProps.dashEditable and @state.editMode
+            @setState editMode: false
+
     hide: ->
 
     render: ->
