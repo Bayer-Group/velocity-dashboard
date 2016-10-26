@@ -177,6 +177,9 @@
   bottom: 0;
   right: 0;
 }
+.dashboard .widget-preview .no-click {
+  pointer-events: none;
+}
 /*!
  *  Weather Icons 1.3
  *  Updated November 30th, 2014
