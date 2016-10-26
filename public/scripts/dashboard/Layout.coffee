@@ -13,7 +13,7 @@ module.exports = class Positioner
         columnCount = @sizeConfig.maxColumns
         while dashboardWidth < maxWidthForColumnCount(columnCount)
             columnCount--
-        @_columnCount = columnCount
+        @_columnCount = Math.max(1, columnCount)
 
     cellIsEmpty: ({row, col}) ->
         !@_currentGrid[row]?[col]

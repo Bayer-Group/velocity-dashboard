@@ -15,6 +15,10 @@ module.exports = React.createClass
     toggleEditMode: ->
         @setState editMode: !@state.editMode
 
+    componentWillReceiveProps: (nextProps) ->
+        if !nextProps.dashEditable and @state.editMode
+            @setState editMode: false
+
     hide: ->
 
     render: ->
@@ -27,16 +31,19 @@ module.exports = React.createClass
         styles =
             height: height * (widgetHeight + widgetMargin) - widgetMargin
             width: if columnCount is 1 then '100%' else width * (widgetWidth + widgetMargin) - widgetMargin
-            left: col * (widgetWidth + widgetMargin)
+            left: Math.max(0, col * (widgetWidth + widgetMargin))
             top: row * (widgetHeight + widgetMargin)
 
         <div className="widget" style={styles}>
             {
                 if dashEditable
-                    <span>
-                        {<i className="fa fa-cog edit-widget-button" onClick={@toggleEditMode}></i> if configComp}
-                        <i className="fa fa-times hide-widget-button" onClick={onHide}></i>
-                    </span>
+                    if editMode
+                        <a className="edit-widget-button close-button" onClick={@toggleEditMode}>done</a>
+                    else
+                        <span>
+                            {<i className="fa fa-cog edit-widget-button" onClick={@toggleEditMode}></i> if configComp}
+                            <i className="fa fa-times hide-widget-button" onClick={onHide}></i>
+                        </span>
             }
             {
                 comp = if dashEditable and editMode

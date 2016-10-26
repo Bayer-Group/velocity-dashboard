@@ -1,7 +1,9 @@
+@addPanelHeight: 200px;
 
 .dashboard {
     background: #ececec;
     overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
 
     .edit-button {
         background-color: #2980b9;
@@ -14,6 +16,11 @@
         top: 53px;
         box-shadow: 4px 6px 6px #b7b7b7;
         cursor: pointer;
+        &.editing {
+            box-shadow: 1px 1px 6px #b7b7b7;
+            top: 58px;
+            right: 24px;
+        }
         .fa {
             color: white;
             font-size: 25pt;
@@ -28,6 +35,10 @@
         left: 0;
         right: 0;
         overflow-y: auto;
+    }
+
+    &.editing .dashboard-container {
+        bottom: @addPanelHeight;
     }
 
     .dashboard-content {
@@ -73,6 +84,11 @@
             top: 10px;
             color: #a7a7a7;
             cursor: pointer;
+            &.close-button {
+                color: #2980b9;
+                top: 6px;
+                right: 13px;
+            }
         }
 
         .hide-widget-button {
@@ -104,7 +120,7 @@
         position: absolute;
         left: 0;
         right: 0;
-        height: 200px;
+        height: @addPanelHeight;
         bottom: 0;
         background: #c3c3c3;
         padding: 11px;
@@ -115,7 +131,7 @@
     }
 
     .widget-panel-enter {
-        bottom: -200px;
+        bottom: calc(0 - @addPanelHeight);
         &.widget-panel-enter-active {
             bottom: 0;
             transition: bottom .25s ease-in;
@@ -124,7 +140,7 @@
     .widget-panel-leave {
         bottom: 0;
         &.widget-panel-leave-active {
-            bottom: -200px;
+            bottom: calc(0 - @addPanelHeight);
             transition: bottom .25s ease-in;
         }
     }
@@ -179,6 +195,9 @@
             left: 0;
             bottom: 0;
             right: 0;
+        }
+        .no-click {
+            pointer-events: none;
         }
     }
 }

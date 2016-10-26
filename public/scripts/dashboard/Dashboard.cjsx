@@ -93,9 +93,9 @@ module.exports = React.createClass
         if layout.columnCount() is 1
             contentWidth = '90%'
 
-        <div className={"dashboard #{className}"}>
+        <div className={"dashboard #{className} #{if editMode then 'editing' else ''}"}>
             <Title height={titleHeight}>{title}</Title>
-            <div className='edit-button' onClick={@toggleEditMode}>
+            <div className="edit-button #{if editMode then 'editing' else ''}" onClick={@toggleEditMode}>
                 <i className="fa fa-cogs" />
             </div>
             <div className='dashboard-container' style={top: titleHeight}>
@@ -108,7 +108,7 @@ module.exports = React.createClass
                 if editMode
                     addPanelChildren = children.map (child) =>
                         preview = if child.props.previewComp then React.createElement(child.props.previewComp) else <div className='default-preview' key={child.props.id}>No Preview</div>
-                        <div className='widget-preview' key={child.props.id} onClick={=>@addWidget(child.props.id)}>{preview}</div>
+                        <div className='widget-preview' key={child.props.id} onClick={=>@addWidget(child.props.id)}><div className='no-click'>{preview}</div></div>
                     <AddWidgetPanel>{addPanelChildren}</AddWidgetPanel>
             }
             </ReactCSSTransitionGroup>
