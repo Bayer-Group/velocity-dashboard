@@ -95,7 +95,7 @@ module.exports = React.createClass
 
         <div className={"dashboard #{className}"}>
             <Title height={titleHeight}>{title}</Title>
-            <div className='edit-button' onClick={@toggleEditMode}>
+            <div className="edit-button #{if editMode then 'editing' else ''}" onClick={@toggleEditMode}>
                 <i className="fa fa-cogs" />
             </div>
             <div className='dashboard-container' style={top: titleHeight}>

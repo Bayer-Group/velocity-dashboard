@@ -14,6 +14,11 @@
   box-shadow: 4px 6px 6px #b7b7b7;
   cursor: pointer;
 }
+.dashboard .edit-button.editing {
+  box-shadow: 1px 1px 6px #b7b7b7;
+  top: 58px;
+  right: 24px;
+}
 .dashboard .edit-button .fa {
   color: white;
   font-size: 25pt;
