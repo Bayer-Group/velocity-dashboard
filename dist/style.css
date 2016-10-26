@@ -70,6 +70,11 @@
   color: #a7a7a7;
   cursor: pointer;
 }
+.dashboard .widget .edit-widget-button.close-button {
+  color: #2980b9;
+  top: 6px;
+  right: 13px;
+}
 .dashboard .widget .hide-widget-button {
   position: absolute;
   right: 10px;
