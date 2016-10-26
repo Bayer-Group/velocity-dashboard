@@ -27,7 +27,7 @@ module.exports = React.createClass
         styles =
             height: height * (widgetHeight + widgetMargin) - widgetMargin
             width: if columnCount is 1 then '100%' else width * (widgetWidth + widgetMargin) - widgetMargin
-            left: col * (widgetWidth + widgetMargin)
+            left: Math.max(0, col * (widgetWidth + widgetMargin))
             top: row * (widgetHeight + widgetMargin)
 
         <div className="widget" style={styles}>
