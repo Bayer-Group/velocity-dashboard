@@ -6,8 +6,8 @@
     "start": "NODE_ENV=production node ./bin/www",
     "dev": "cross-env NODE_ENV=development node ./bin/www",
     "clean": "rimraf public/styles/style.css public/scripts/bundle.js public/scripts/bundle.js.map",
-    "lessc": "cross-env lessc ./public/styles/style.less ./public/styles/style.css",
-    "package": "cross-env NODE_ENV=production npm run lessc && webpack && cp ./node_modules/font-awesome/fonts/* ./dist/fonts/ && cp ./node_modules/weather-icons/font/* ./dist/fonts/ && cp public/styles/style.css dist/",
+    "lessc": "cross-env lessc ./public/styles/style.less ./public/styles/style.css && cross-env lessc ./public/styles/dashboard.less ./public/styles/dashboard.css",
+    "package": "cross-env NODE_ENV=production npm run lessc && webpack && cp ./node_modules/font-awesome/fonts/* ./dist/fonts/ && cp ./node_modules/weather-icons/font/* ./dist/fonts/ && cp public/styles/*.css dist/",
     "test": "mocha test",
     "test:dev": "mocha --watch test",
     "test:nyan": "mocha --watch --reporter nyan test"
