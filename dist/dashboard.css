@@ -1,0 +1,196 @@
+.dashboard {
+  background: #ececec;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.dashboard .edit-button {
+  background-color: #2980b9;
+  position: fixed;
+  z-index: 2;
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  right: 26px;
+  top: 53px;
+  box-shadow: 4px 6px 6px #b7b7b7;
+  cursor: pointer;
+}
+.dashboard .edit-button.editing {
+  box-shadow: 1px 1px 6px #b7b7b7;
+  top: 58px;
+  right: 24px;
+}
+.dashboard .edit-button .fa {
+  color: white;
+  font-size: 25pt;
+  margin-top: 13px;
+  margin-left: 10px;
+}
+.dashboard .dashboard-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+}
+.dashboard.editing .dashboard-container {
+  bottom: 200px;
+}
+.dashboard .dashboard-content {
+  margin: 18px auto;
+  position: relative;
+}
+.dashboard .dashboard-content.columns-1 .widget {
+  width: 100%;
+}
+.dashboard .title {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 8px 14px;
+  vertical-align: bottom;
+  font-size: 19pt;
+  text-transform: uppercase;
+  color: gray;
+}
+.dashboard .widget {
+  background: white;
+  box-shadow: 1px 1px 5px #b7b7b7;
+  display: inline-block;
+  position: absolute;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  padding: 8px;
+  overflow: hidden;
+  transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+}
+.dashboard .widget .edit-widget-button {
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  color: #a7a7a7;
+  cursor: pointer;
+}
+.dashboard .widget .edit-widget-button.close-button {
+  color: #2980b9;
+  top: 6px;
+  right: 13px;
+}
+.dashboard .widget .hide-widget-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #a7a7a7;
+  cursor: pointer;
+}
+.dashboard .widget .widgetTitle {
+  position: absolute;
+  z-index: 1;
+  font-size: 18px;
+  padding: 10px;
+  color: gray;
+}
+.dashboard .widget .widgetBody {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.dashboard .widget .config-comp {
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.dashboard .widget .background-watermark {
+  font-size: 268px;
+  position: absolute;
+  bottom: -34px;
+  right: -43px;
+  color: rgba(0, 0, 0, 0.06);
+}
+.dashboard .add-widget-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 200px;
+  bottom: 0;
+  background: #c3c3c3;
+  padding: 11px;
+  white-space: nowrap;
+  overflow-x: auto;
+  z-index: 10;
+  opacity: .98;
+}
+.dashboard .widget-panel-enter {
+  bottom: calc(-200px);
+}
+.dashboard .widget-panel-enter.widget-panel-enter-active {
+  bottom: 0;
+  transition: bottom 0.25s ease-in;
+}
+.dashboard .widget-panel-leave {
+  bottom: 0;
+}
+.dashboard .widget-panel-leave.widget-panel-leave-active {
+  bottom: calc(-200px);
+  transition: bottom 0.25s ease-in;
+}
+.dashboard .widget-preview {
+  background: #ececec;
+  display: inline-block;
+  height: 148px;
+  width: 220px;
+  border: 1px solid #adadad;
+  margin: 5px 10px;
+  padding: 5px;
+  opacity: 0.5;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.dashboard .widget-preview:hover {
+  background: white;
+  opacity: 1.0;
+  -webkit-filter: none;
+  filter: none;
+}
+.dashboard .widget-preview:hover:after {
+  position: absolute;
+  font: normal normal normal 14px/1 FontAwesome;
+  -webkit-font-smoothing: antialiased;
+  content: "\f055";
+  font-size: 31pt;
+  text-align: center;
+  right: 8px;
+  bottom: 8px;
+  color: #27ae60;
+}
+.dashboard .widget-preview .default-preview {
+  text-align: center;
+  padding-top: 60px;
+  color: gray;
+}
+.dashboard .widget-preview .widgetTitle {
+  position: absolute;
+  z-index: 1;
+  font-size: 15px;
+  padding: 6px;
+  color: gray;
+}
+.dashboard .widget-preview .widgetBody {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.dashboard .widget-preview .no-click {
+  pointer-events: none;
+}

@@ -1,6 +1,7 @@
 .dashboard {
   background: #ececec;
   overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 .dashboard .edit-button {
   background-color: #2980b9;
@@ -98,6 +99,19 @@
   left: 0;
   bottom: 0;
   right: 0;
+}
+.dashboard .widget .config-comp {
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.dashboard .widget .background-watermark {
+  font-size: 268px;
+  position: absolute;
+  bottom: -34px;
+  right: -43px;
+  color: rgba(0, 0, 0, 0.06);
 }
 .dashboard .add-widget-panel {
   position: absolute;
@@ -1012,11 +1026,4 @@ body {
 .fa-thumbs-up.preview {
   font-size: 97px;
   margin-top: -4px;
-}
-.background-watermark {
-  font-size: 268px;
-  position: absolute;
-  bottom: -34px;
-  right: -43px;
-  color: rgba(0, 0, 0, 0.06);
 }
