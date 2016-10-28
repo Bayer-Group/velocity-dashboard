@@ -41,7 +41,7 @@ const lib = _.extend({}, base, {
         libraryTarget: 'commonjs2'
     },
     externals: {
-        'react': 'React',
+        'react': 'react',
         'react-dom' : 'react-dom',
         'react-addons-css-transition-group' : 'react-addons-css-transition-group'
     }
