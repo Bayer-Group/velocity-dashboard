@@ -23,10 +23,11 @@ module.exports = React.createClass
         cc1 = @layout.columnCount()
         @layout.reset(@state.componentWidth)
         cc2 = @layout.columnCount()
-        nextProps != @props or nextState.editMode != @state.editMode or cc1 != cc2
+        nextProps != @props or nextState.editMode != @state.editMode or nextState.addMode != @state.addMode or cc1 != cc2
 
     getInitialState: ->
         editMode: false
+        addMode: false
 
     childComponentsForConfig: (components, config, editMode, sizeConfig, columnCount) ->
         componentsById = getComponentsById(components)
@@ -44,8 +45,8 @@ module.exports = React.createClass
                     columnCount: columnCount
         _(instances).compact()
 
-    toggleEditMode: ->
-        @setState editMode: !@state.editMode
+    toggleEditMode: -> @setState editMode: !@state.editMode
+    toggleAddMode: -> @setState addMode: !@state.addMode
 
     hideWidget: (instanceId) ->
         allConfigs = [].concat @props.config
@@ -81,7 +82,7 @@ module.exports = React.createClass
 
     render: ->
         {children, title, className, config, widgetHeight = defaults.widgetHeight, widgetWidth = defaults.widgetWidth, widgetMargin = defaults.margin, titleHeight = 50, maxColumns = 5} = @props
-        {editMode, componentWidth} = @state
+        {editMode, addMode, componentWidth} = @state
         children = [].concat(children)
         sizeConfig = {widgetHeight, widgetWidth, widgetMargin, titleHeight, maxColumns}
 
@@ -93,11 +94,17 @@ module.exports = React.createClass
         if layout.columnCount() is 1
             contentWidth = '90%'
 
-        <div className={"dashboard #{className} #{if editMode then 'editing' else ''}"}>
+        <div className={"dashboard #{className} #{if addMode then 'editing' else ''}"}>
             <Title height={titleHeight}>{title}</Title>
             <div className="edit-button #{if editMode then 'editing' else ''}" onClick={@toggleEditMode}>
                 <i className="fa fa-cogs" />
             </div>
+            {
+                if editMode
+                    <div className="add-button #{if addMode then 'adding' else ''}" onClick={@toggleAddMode}>
+                        <i className="fa fa-plus" />
+                    </div>
+            }
             <div className='dashboard-container' style={top: titleHeight}>
                 <div className={"dashboard-content columns-#{layout.columnCount()}"} style={width: contentWidth}>
                     {childrenForCurrentConfig}
@@ -105,7 +112,7 @@ module.exports = React.createClass
             </div>
             <ReactCSSTransitionGroup transitionName="widget-panel" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionEnter={true} transitionLeave={true}>
             {
-                if editMode
+                if addMode
                     addPanelChildren = children.map (child) =>
                         preview = if child.props.previewComp then React.createElement(child.props.previewComp) else <div className='default-preview' key={child.props.id}>No Preview</div>
                         <div className='widget-preview' key={child.props.id} onClick={=>@addWidget(child.props.id)}><div className='no-click'>{preview}</div></div>
