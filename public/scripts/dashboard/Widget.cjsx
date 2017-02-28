@@ -22,7 +22,7 @@ module.exports = React.createClass
     hide: ->
 
     render: ->
-        {instanceId, height, width, col, row, dashEditable, config, onConfigChange, onHide, contentComp, configComp, sizeConfig, columnCount} = @props
+        {instanceId, height, width, col, row, dashEditable, draggable, config, onConfigChange, onHide, contentComp, configComp, sizeConfig, columnCount} = @props
         width = config?.width or width or 1
         height = config?.height or height or 1
         {editMode} = @state
@@ -34,9 +34,13 @@ module.exports = React.createClass
             left: Math.max(0, col * (widgetWidth + widgetMargin))
             top: row * (widgetHeight + widgetMargin)
 
-        <div className="widget" style={styles}>
+        <div className={"widget #{if draggable then 'draggable' else ''}"} style={styles}>
             {
-                if dashEditable
+                if draggable
+                    <div className='dragbar'></div>
+            }
+            {
+                if dashEditable and !draggable
                     if editMode
                         <a className="edit-widget-button close-button" onClick={@toggleEditMode}>done</a>
                     else

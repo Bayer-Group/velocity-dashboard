@@ -28,8 +28,8 @@
             margin-left: 10px;
         }
     }
-    .add-button {
-        background-color: #29b934;
+    .move-button {
+        background-color: #848484;
         position: fixed;
         z-index: 2;
         height: 60px;
@@ -39,7 +39,7 @@
         top: 135px;
         box-shadow: 4px 6px 6px #b7b7b7;
         cursor: pointer;
-        &.adding {
+        &.moving {
             box-shadow: 1px 1px 6px #b7b7b7;
             top: 140px;
             right: 24px;
@@ -47,8 +47,8 @@
         .fa {
             color: white;
             font-size: 25pt;
-            margin-top: 15px;
-            margin-left: 17px;
+            margin-top: 14px;
+            margin-left: 14px;
         }
     }
 
@@ -100,6 +100,7 @@
         overflow: hidden;
         @animation-speed: .5s;
         transition: width @animation-speed, height @animation-speed, top @animation-speed, left @animation-speed;
+        border: 3px solid transparent;
 
         .edit-widget-button {
             position: absolute;
@@ -153,6 +154,29 @@
             bottom: -34px;
             right: -43px;
             color: rgba(0, 0, 0, 0.06);
+        }
+
+        .dragbar {
+            height: 21px;
+            width: 10px;
+            position: absolute;
+            background-image: url(grip.png);
+            background-repeat: no-repeat;
+            z-index: 2;
+        }
+        &.draggable {
+            cursor: move;
+            * {
+                cursor: move;
+                pointer-events: none;
+            }
+            :nth-child(2) {
+                filter: blur(1px) grayscale(60%);
+                opacity: 0.8;
+            }
+            &:hover {
+                border: 3px solid #2980b9;
+            }
         }
     }
 
