@@ -104,7 +104,7 @@ Dashboard = React.createClass
         sizeConfig = {widgetHeight, widgetWidth, widgetMargin, titleHeight, maxColumns}
 
         @layout = layout = new Layout(sizeConfig)
-        layout.reset(componentWidth)
+        layout.reset(@props.componentWidthForTesting or componentWidth)
         childrenForCurrentConfig = @childComponentsForConfig(children, config, editMode, moveMode, sizeConfig, layout.columnCount())
 
         contentWidth = layout.columnCount() * (widgetWidth + widgetMargin) - widgetMargin
