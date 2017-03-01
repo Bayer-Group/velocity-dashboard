@@ -26,6 +26,29 @@
   margin-top: 13px;
   margin-left: 10px;
 }
+.dashboard .move-button {
+  background-color: #848484;
+  position: fixed;
+  z-index: 2;
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  right: 26px;
+  top: 135px;
+  box-shadow: 4px 6px 6px #b7b7b7;
+  cursor: pointer;
+}
+.dashboard .move-button.moving {
+  box-shadow: 1px 1px 6px #b7b7b7;
+  top: 140px;
+  right: 24px;
+}
+.dashboard .move-button .fa {
+  color: white;
+  font-size: 25pt;
+  margin-top: 14px;
+  margin-left: 14px;
+}
 .dashboard .dashboard-container {
   position: absolute;
   bottom: 0;
@@ -64,8 +87,16 @@
   box-sizing: border-box;
   margin-bottom: 30px;
   padding: 8px;
-  overflow: hidden;
   transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+  border: 3px solid transparent;
+}
+.dashboard .widget .widget-inner {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .dashboard .widget .edit-widget-button {
   position: absolute;
@@ -114,6 +145,36 @@
   bottom: -34px;
   right: -43px;
   color: rgba(0, 0, 0, 0.06);
+}
+.dashboard .widget .dragbar {
+  height: 21px;
+  width: 10px;
+  position: absolute;
+  background-image: url(grip.png);
+  background-repeat: no-repeat;
+  z-index: 2;
+  margin: 7px;
+}
+.dashboard .widget.draggable {
+  cursor: move;
+}
+.dashboard .widget.draggable * {
+  cursor: move;
+  pointer-events: none;
+}
+.dashboard .widget.draggable :nth-child(2) {
+  filter: blur(1px) grayscale(60%);
+  opacity: 0.8;
+}
+.dashboard .widget.draggable:hover {
+  border: 3px solid #2980b9;
+}
+.dashboard .widget .drop-prompt {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: -12px;
+  border-left: 4px solid yellow;
 }
 .dashboard .add-widget-panel {
   position: absolute;
