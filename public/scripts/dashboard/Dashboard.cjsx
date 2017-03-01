@@ -5,13 +5,15 @@ componentWidthMixin = require 'react-component-width-mixin'
 _ = require 'underscore'
 ReactCSSTransitionGroup = require 'react-addons-css-transition-group'
 AddWidgetPanel = require './AddWidgetPanel'
+{DragDropContext} = require 'react-dnd'
+dndBackend = require 'react-dnd-html5-backend'
 
 defaults =
     widgetWidth: 250
     widgetHeight: 250
     margin: 15
 
-module.exports = React.createClass
+Dashboard = React.createClass
 
     displayName: 'Dashboard'
 
@@ -44,10 +46,16 @@ module.exports = React.createClass
                     instanceId: widget.instanceId
                     sizeConfig: sizeConfig
                     columnCount: columnCount
+                    onDrop: @moveWidget
         _(instances).compact()
 
-    toggleEditMode: -> @setState editMode: !@state.editMode
-    toggleMoveMode: -> @setState moveMode: !@state.moveMode
+    toggleEditMode: ->
+        newEditMode = !@state.editMode
+        @setState editMode: newEditMode
+        @setState(moveMode: false) if !newEditMode
+
+    toggleMoveMode: ->
+        @setState moveMode: !@state.moveMode
 
     hideWidget: (instanceId) ->
         allConfigs = [].concat @props.config
@@ -80,6 +88,14 @@ module.exports = React.createClass
             config: {}
         @props.onConfigChange config
 
+    moveWidget: (draggingWidgetId, targetWidgetId) ->
+        config = [].concat @props.config
+        targetIndex = _(config).findIndex (widget) -> widget.instanceId is targetWidgetId
+        sourceIndex = _(config).findIndex (widget) -> widget.instanceId is draggingWidgetId
+        if sourceIndex < targetIndex
+            targetIndex--
+        config.splice(targetIndex, 0, config.splice(sourceIndex, 1)[0]);
+        @props.onConfigChange config
 
     render: ->
         {children, title, className, config, widgetHeight = defaults.widgetHeight, widgetWidth = defaults.widgetWidth, widgetMargin = defaults.margin, titleHeight = 50, maxColumns = 5} = @props
@@ -122,6 +138,7 @@ module.exports = React.createClass
             </ReactCSSTransitionGroup>
         </div>
 
+module.exports = DragDropContext(dndBackend)(Dashboard)
 module.exports.defaults = defaults
 
 getComponentsById = (components) ->

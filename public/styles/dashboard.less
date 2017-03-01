@@ -97,10 +97,18 @@
         box-sizing: border-box;
         margin-bottom: 30px;
         padding: 8px;
-        overflow: hidden;
         @animation-speed: .5s;
         transition: width @animation-speed, height @animation-speed, top @animation-speed, left @animation-speed;
         border: 3px solid transparent;
+
+        .widget-inner {
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
 
         .edit-widget-button {
             position: absolute;
@@ -163,6 +171,7 @@
             background-image: url(grip.png);
             background-repeat: no-repeat;
             z-index: 2;
+            margin: 7px;
         }
         &.draggable {
             cursor: move;
@@ -177,6 +186,13 @@
             &:hover {
                 border: 3px solid #2980b9;
             }
+        }
+        .drop-prompt {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            left: -12px;
+            border-left: 4px solid yellow;
         }
     }
 

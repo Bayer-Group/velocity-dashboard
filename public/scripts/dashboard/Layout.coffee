@@ -63,3 +63,7 @@ module.exports = class Positioner
     columnCount: ->
         @_columnCount
 
+    rowCount: ->
+        @_currentGrid.length
+
+

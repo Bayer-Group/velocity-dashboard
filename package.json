@@ -19,11 +19,13 @@
   },
   "main": "./dist/main",
   "dependencies": {
+    "coffee-script": "~1.10.0",
     "compression": "~1.6.1",
     "express": "~4.13.4",
     "jade": "~1.11.0",
-    "underscore": "~1.8.3",
-    "coffee-script": "~1.10.0"
+    "react-dnd": "~2.2.3",
+    "react-dnd-html5-backend": "~2.2.4",
+    "underscore": "~1.8.3"
   },
   "peerDependencies": {
     "react": "15.x",
