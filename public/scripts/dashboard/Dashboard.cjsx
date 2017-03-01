@@ -25,7 +25,7 @@ Dashboard = React.createClass
         cc1 = @layout.columnCount()
         @layout.reset(@state.componentWidth)
         cc2 = @layout.columnCount()
-        nextProps != @props or nextState.editMode != @state.editMode or nextState.moveMode != @state.addMode or cc1 != cc2
+        nextProps != @props or nextState.editMode != @state.editMode or nextState.moveMode != @state.moveMode or cc1 != cc2
 
     getInitialState: ->
         editMode: false
