@@ -68,7 +68,7 @@ describe 'dashboard', ->
 
     it "reorders at smaller resolutions", ->
         {dash, widgets: [widget1, widget2, widget3]} = createDash(columns: 3, widgets: ['narrow1', 'narrow1', 'narrow1'])
-        dash.setState componentWidth: 400
+        dash.setProps componentWidthForTesting: 400
         positionOf(widget1).should.eql [0, 0]
         positionOf(widget2).should.eql [0, rowHeight]
         positionOf(widget3).should.eql [0, rowHeight * 2]
@@ -87,7 +87,7 @@ describe 'dashboard', ->
                 <Widget width='3' height='1' id='wide1' contentComp={-><div>wide1</div>} />
             </Dashboard>
         )
-        dash.setState componentWidth: 1000
+        dash.setProps componentWidthForTesting: 1000
         #console.info dash.html()
         widgets = dash.find('.widget')
         {dash, widgets: [widgets.at(0), widgets.at(1), widgets.at(2)]}

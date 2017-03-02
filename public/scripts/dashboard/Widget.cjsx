@@ -1,6 +1,8 @@
 React = require 'react'
+{drop, target, collectDropTarget, ItemTypes, widgetSource, collectDragable} = require './dnd'
+{DropTarget, DragSource} = require 'react-dnd'
 
-module.exports = React.createClass
+Widget = React.createClass
 
     displayName: 'Widget'
 
@@ -22,7 +24,8 @@ module.exports = React.createClass
     hide: ->
 
     render: ->
-        {instanceId, height, width, col, row, dashEditable, config, onConfigChange, onHide, contentComp, configComp, sizeConfig, columnCount} = @props
+        {instanceId, height, width, col, row, dashEditable, draggable, config, onConfigChange, onHide, contentComp, configComp, sizeConfig, columnCount} = @props
+        {connectDragSource, isDragging, connectDropTarget, isOver} = @props
         width = config?.width or width or 1
         height = config?.height or height or 1
         {editMode} = @state
@@ -34,27 +37,49 @@ module.exports = React.createClass
             left: Math.max(0, col * (widgetWidth + widgetMargin))
             top: row * (widgetHeight + widgetMargin)
 
-        <div className="widget" style={styles}>
-            {
-                if dashEditable
-                    if editMode
-                        <a className="edit-widget-button close-button" onClick={@toggleEditMode}>done</a>
-                    else
-                        <span>
-                            {<i className="fa fa-cog edit-widget-button" onClick={@toggleEditMode}></i> if configComp}
-                            <i className="fa fa-times hide-widget-button" onClick={onHide}></i>
-                        </span>
-            }
-            {
-                comp = if dashEditable and editMode
-                    if configComp
-                        <div>
-                            <div className='config-comp'>{React.createElement(configComp, {instanceId, config, onConfigChange})}</div>
-                            <i className="fa fa-lg fa-cog background-watermark"></i>
-                        </div>
-                    else
-                        <div/>
-                else
-                    if contentComp then React.createElement(contentComp, {instanceId, config}) else <div/>
-            }
-        </div>
+        classes = ['widget']
+        classes.push 'draggable' if draggable
+        classes.push 'drag-over' if isOver
+
+        rendered =
+            <div className={classes.join(' ')} style={styles}>
+                {
+                    if isOver
+                        <div className='drop-prompt' style={height: widgetHeight}/>
+                }
+                <div className='widget-inner'>
+                    {
+                        if draggable
+                            <div className='dragbar'></div>
+                    }
+                    {
+                        if dashEditable and !draggable
+                            if editMode
+                                <a className="edit-widget-button close-button" onClick={@toggleEditMode}>done</a>
+                            else
+                                <span>
+                                    {<i className="fa fa-cog edit-widget-button" onClick={@toggleEditMode}></i> if configComp}
+                                    <i className="fa fa-times hide-widget-button" onClick={onHide}></i>
+                                </span>
+                    }
+                    {
+                        comp = if dashEditable and editMode
+                            if configComp
+                                <div>
+                                    <div className='config-comp'>{React.createElement(configComp, {instanceId, config, onConfigChange})}</div>
+                                    <i className="fa fa-lg fa-cog background-watermark"></i>
+                                </div>
+                            else
+                                <div/>
+                        else
+                            if contentComp then React.createElement(contentComp, {instanceId, config}) else <div/>
+                    }
+                </div>
+            </div>
+
+        if draggable
+            connectDragSource(connectDropTarget(rendered))
+        else
+            rendered
+
+module.exports = DragSource(ItemTypes.WIDGET, widgetSource, collectDragable)(DropTarget(ItemTypes.WIDGET, target, collectDropTarget)(Widget))
