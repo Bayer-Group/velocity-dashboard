@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development node ./bin/www",
     "clean": "rimraf public/styles/style.css public/scripts/bundle.js public/scripts/bundle.js.map",
     "lessc": "cross-env lessc ./public/styles/style.less ./public/styles/style.css && cross-env lessc ./public/styles/dashboard.less ./public/styles/dashboard.css",
-    "package": "cross-env NODE_ENV=production npm run lessc && webpack && cp ./node_modules/font-awesome/fonts/* ./dist/fonts/ && cp ./node_modules/weather-icons/font/* ./dist/fonts/ && cp public/styles/*.css dist/",
+    "package": "cross-env NODE_ENV=production npm run lessc && webpack && cp ./node_modules/font-awesome/fonts/* ./dist/fonts/ && cp ./node_modules/weather-icons/font/* ./dist/fonts/ && cp public/styles/*.css dist && cp public/styles/*.png dist",
     "test": "mocha test",
     "test:dev": "mocha --watch test",
     "test:nyan": "mocha --watch --reporter nyan test"
@@ -23,8 +23,11 @@
     "compression": "~1.6.1",
     "express": "~4.13.4",
     "jade": "~1.11.0",
+    "react": "~15.6.2",
+    "react-addons-css-transition-group": "~15.6.2",
     "react-dnd": "~2.2.3",
     "react-dnd-html5-backend": "~2.2.4",
+    "react-dom": "~15.6.2",
     "underscore": "~1.8.3"
   },
   "peerDependencies": {
