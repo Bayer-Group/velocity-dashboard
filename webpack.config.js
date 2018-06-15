@@ -1,50 +1,52 @@
-const webpack = require('webpack');
-const _ = require('underscore');
+const webpack = require("webpack")
+const _ = require("underscore")
+const path = require("path")
 
 const base = {
+    mode: "production",
     module: {
-        loaders: [
-            {test: /.json/, loader: 'json'},
-            {test: /.coffee$/, loader: 'coffee'},
-            {test: /.cjsx$/, loaders: ['coffee', 'cjsx']}
+        rules: [
+            { test: /.json/, loader: "json-loader", exclude: /node_modules/ },
+            { test: /.jsx$/, loader: "babel-loader", exclude: /node_modules/ }
         ]
     },
     resolve: {
-        extensions: [
-            '',
-            '.js',
-            '.json',
-            '.coffee',
-            '.cjsx'
-        ]
+        extensions: [".js", ".json", ".jsx"]
     },
-};
+    devtool: "source-map"
+}
 
 const example = _.extend({}, base, {
     entry: {
-        example: "./public/scripts/example/main"
+        example: [
+            "@babel/polyfill",
+            `${path.dirname(__filename)}/public/scripts/example/main`
+        ]
     },
     output: {
-        path: "./dist/",
-        filename: '[name].js',
-        libraryTarget: 'var'
+        path: `${path.dirname(__filename)}/dist/`,
+        filename: "[name].js",
+        libraryTarget: "var"
     }
-});
+})
 
 const lib = _.extend({}, base, {
     entry: {
-        main: ["./public/scripts/dashboard/index"]
+        main: [
+            "@babel/polyfill",
+            `${path.dirname(__filename)}/public/scripts/dashboard/index`
+        ]
     },
     output: {
-        path: "./dist/",
-        filename: '[name].js',
-        libraryTarget: 'commonjs2'
+        path: `${path.dirname(__filename)}/dist/`,
+        filename: "[name].js",
+        libraryTarget: "commonjs2"
     },
     externals: {
-        'react': 'react',
-        'react-dom' : 'react-dom',
-        'react-addons-css-transition-group' : 'react-addons-css-transition-group'
+        react: "react",
+        "react-dom": "react-dom",
+        "react-transition-group": "react-transition-group"
     }
-});
+})
 
-module.exports = [example, lib];
+module.exports = [example, lib]

@@ -190,7 +190,7 @@
   opacity: .98;
 }
 .dashboard .widget-panel-enter {
-  bottom: calc(-200px);
+  bottom: calc(0 - 200px);
 }
 .dashboard .widget-panel-enter.widget-panel-enter-active {
   bottom: 0;
@@ -200,7 +200,7 @@
   bottom: 0;
 }
 .dashboard .widget-panel-leave.widget-panel-leave-active {
-  bottom: calc(-200px);
+  bottom: calc(0 - 200px);
   transition: bottom 0.25s ease-in;
 }
 .dashboard .widget-preview {
