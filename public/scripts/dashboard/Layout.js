@@ -3,10 +3,13 @@ const React = require('react');
 
 module.exports = (Positioner = (function() {
     Positioner = class Positioner {
+        static initClass() {
+            this.prototype._currentGrid = [];
+            this.prototype._columnCount = 4;
+        }
+
         constructor(sizeConfig) {
             this.sizeConfig = sizeConfig;
-            this._columnCount = 4;
-            this._currentGrid = [];
         }
 
         reset(dashboardWidth) {
@@ -89,6 +92,7 @@ module.exports = (Positioner = (function() {
             return this._currentGrid.length;
         }
     };
+    Positioner.initClass();
     return Positioner;
 })());
 

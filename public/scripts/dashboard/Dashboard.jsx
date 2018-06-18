@@ -1,12 +1,14 @@
 const React = require("react")
+const ReactDOM = require("react-dom")
+
 const Title = require("./Title")
 const Layout = require("./Layout")
-const componentWidthMixin = require("react-component-width-mixin")
 const _ = require("lodash")
 const { CSSTransitionGroup } = require("react-transition-group")
 const AddWidgetPanel = require("./AddWidgetPanel")
 const { DragDropContext } = require("react-dnd")
 import HTML5Backend from "react-dnd-html5-backend"
+import windowSize from "react-window-size"
 
 const defaults = {
     widgetWidth: 250,
@@ -26,15 +28,13 @@ class Dashboard extends React.Component {
     displayName() {
         return "Dashboard"
     }
-    mixins() {
-        return [componentWidthMixin]
-    }
 
     // # optimize re-render to exclude width changes unless they affect column count
     shouldComponentUpdate(nextProps, nextState) {
-        this.layout.reset(nextState.componentWidth)
+        this.layout.reset(nextProps.componentWidthForTesting || nextState.componentWidth)
         const cc1 = this.layout.columnCount()
         this.layout.reset(this.state.componentWidth)
+
         const cc2 = this.layout.columnCount()
         return (
             nextProps !== this.props ||
@@ -59,8 +59,8 @@ class Dashboard extends React.Component {
                     },
                     config: widget.config,
                     instanceId: widget.instanceId,
-                    sizeConfig: sizeConfig,
-                    columnCount: columnCount,
+                    sizeConfig,
+                    columnCount,
                     onDrop: this.moveWidget
                 })
             }
@@ -116,8 +116,8 @@ class Dashboard extends React.Component {
     }
 
     moveWidget(draggingWidgetId, targetWidgetId) {
-        const config = [].concat(this.props.config)
-        const targetIndex = _.findIndex(config, (widget) => widget.instanceId === targetWidgetId)
+        let config = [].concat(this.props.config)
+        let targetIndex = _.findIndex(config, (widget) => widget.instanceId === targetWidgetId)
         const sourceIndex = _.findIndex(config, (widget) => widget.instanceId === draggingWidgetId)
         if (sourceIndex < targetIndex) {
             targetIndex--
@@ -147,10 +147,24 @@ class Dashboard extends React.Component {
             return <AddWidgetPanel>{addPanelChildren}</AddWidgetPanel>
         }
     }
+    handleResize() {
+        this.setState({
+            componentWidth: window.innerWidth
+        })
+    }
+
+    componentDidMount() {
+        this.handleResize()
+        window.addEventListener("resize", this.handleResize)
+    }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.handleResize)
+    }
+
     render() {
         let {
-            title,
             children,
+            title,
             className,
             config,
             widgetHeight = defaults.widgetHeight,
@@ -159,35 +173,37 @@ class Dashboard extends React.Component {
             titleHeight = 50,
             maxColumns = 5
         } = this.props
-        const { editMode, moveMode, componentWidth } = this.state
+
+        let { editMode, moveMode, componentWidth } = this.state
+
         children = [].concat(children)
 
-        let contentWidth, layout
+        let sizeConfig = { widgetHeight, widgetWidth, widgetMargin, titleHeight, maxColumns }
 
-        const sizeConfig = { widgetHeight, widgetWidth, widgetMargin, titleHeight, maxColumns }
+        // this.layout = layout = new Layout(sizeConfig)
+        this.layout = new Layout(sizeConfig)
+        this.layout.reset(this.props.componentWidthForTesting || componentWidth)
 
-        this.layout = layout = new Layout(sizeConfig)
-
-        layout.reset(this.props.componentWidthForTesting || componentWidth)
-
-        const childrenForCurrentConfig = this.childComponentsForConfig(
+        let childrenForCurrentConfig = this.childComponentsForConfig(
             children,
             config,
             editMode,
             moveMode,
             sizeConfig,
-            layout.columnCount()
+            this.layout.columnCount()
         )
 
-        contentWidth = layout.columnCount() * (widgetWidth + widgetMargin) - widgetMargin
+        let contentWidth = this.layout.columnCount() * (widgetWidth + widgetMargin) - widgetMargin
 
-        if (layout.columnCount() === 1) {
+        if (this.layout.columnCount() === 1) {
             contentWidth = "90%"
         }
 
         return (
             <div className={`dashboard ${className} ${editMode && !moveMode ? "editing" : ""}`}>
-                <Title height={titleHeight}>{title}</Title>
+                <Title height={titleHeight}>
+                    {title}
+                </Title>
                 <div className={`edit-button ${editMode ? "editing" : ""}`} onClick={this.toggleEditMode}>
                     <i className="fa fa-cogs" />
                 </div>
@@ -198,7 +214,7 @@ class Dashboard extends React.Component {
                 ) : null}
                 <div className="dashboard-container" style={{ top: titleHeight }}>
                     <div
-                        className={`dashboard-content columns-${layout.columnCount()}`}
+                        className={`dashboard-content columns-${this.layout.columnCount()}`}
                         style={{ width: contentWidth }}>
                         {childrenForCurrentConfig}
                     </div>
@@ -216,7 +232,7 @@ class Dashboard extends React.Component {
     }
 }
 
-module.exports = DragDropContext(HTML5Backend)(Dashboard)
+module.exports = DragDropContext(HTML5Backend)(windowSize(Dashboard))
 module.exports.defaults = defaults
 
 const getComponentsById = (components) => {

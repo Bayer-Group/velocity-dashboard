@@ -18,7 +18,7 @@ proxyquire("../public/scripts/dashboard/Dashboard", {
     "./lessVariableLoader!../../styles/dashboard.less": lessVariables
 })
 
-describe("dashboard", function() {
+describe("dashboard", () => {
     let positionOf,
         onConfigChange = {}
     beforeEach(function() {
@@ -29,7 +29,7 @@ describe("dashboard", function() {
         }
         return (onConfigChange = sinon.stub())
     })
-    it("displays components in the correct order (assuming they all fit)", function() {
+    it("displays components in the correct order (assuming they all fit)", () => {
         const {
             widgets: [widget1, widget2, widget3]
         } = createDash({ columns: 3, widgets: ["narrow1", "narrow2", "narrow1"] })
@@ -38,7 +38,7 @@ describe("dashboard", function() {
         positionOf(widget2).should.eql([colWidth, 0])
         return positionOf(widget3).should.eql([colWidth * 2, 0])
     })
-    it("skips spaces if component doesn't fit", function() {
+    it("skips spaces if component doesn't fit", () => {
         const {
             widgets: [widget1, widget2, widget3]
         } = createDash({ columns: 3, widgets: ["narrow1", "wide1", "wide1"] })
@@ -47,7 +47,7 @@ describe("dashboard", function() {
         positionOf(widget2).should.eql([0, rowHeight])
         return positionOf(widget3).should.eql([0, rowHeight * 2])
     })
-    it("fills in empty spaces with smaller components", function() {
+    it("fills in empty spaces with smaller components", () => {
         const {
             widgets: [widget1, widget2, widget3]
         } = createDash({ columns: 3, widgets: ["narrow1", "wide1", "narrow1"] })
@@ -56,7 +56,7 @@ describe("dashboard", function() {
         positionOf(widget2).should.eql([0, rowHeight])
         return positionOf(widget3).should.eql([colWidth, 0])
     })
-    it("shows add panel when in edit mode", function() {
+    it("shows add panel when in edit mode", () => {
         const { dash } = createDash({
             columns: 3,
             widgets: ["narrow1", "wide1", "wide1"]
@@ -65,7 +65,7 @@ describe("dashboard", function() {
         dash.find(".fa-cogs").simulate("click")
         return expect(dash.find(".add-widget-panel").length).to.eql(1)
     })
-    it("allows the user to edit a widget's configuration", function() {
+    it("allows the user to edit a widget's configuration", () => {
         const { dash } = createDash({
             columns: 3,
             widgets: ["narrow1", "wide1", "wide1"]
@@ -79,7 +79,7 @@ describe("dashboard", function() {
         expect(args[0].length).to.eql(4)
         return expect(args[0][3].widgetId).to.eql("narrow1")
     })
-    it("allows the user to hide a component", function() {
+    it("allows the user to hide a component", () => {
         const { dash } = createDash({
             columns: 3,
             widgets: ["narrow1", "wide1", "wide1"]
@@ -92,21 +92,7 @@ describe("dashboard", function() {
         const args = onConfigChange.firstCall.args
         return expect(args[0].length).to.eql(2)
     })
-    it("reorders at smaller resolutions", function() {
-        const {
-            dash,
-            widgets: [widget1, widget2, widget3]
-        } = createDash({
-            columns: 3,
-            widgets: ["narrow1", "narrow1", "narrow1"]
-        })
-        dash.setProps({
-            componentWidthForTesting: 400
-        })
-        positionOf(widget1).should.eql([0, 0])
-        positionOf(widget2).should.eql([0, rowHeight])
-        return positionOf(widget3).should.eql([0, rowHeight * 2])
-    })
+
     const createDash = function({ columns, widgets }) {
         const config = [
             {

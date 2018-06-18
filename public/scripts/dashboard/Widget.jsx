@@ -55,7 +55,7 @@ class Widget extends React.Component {
     }
 
     renderComponent() {
-        const { config, instanceId, onConfigChange, dashEditable, editMode, configComp, contentComp } = this.props
+        const { config, instanceId, onConfigChange, dashEditable, configComp, contentComp } = this.props
         if (dashEditable && this.state.editMode) {
             if (configComp) {
                 return (
