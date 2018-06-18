@@ -11,13 +11,13 @@
   width: 60px;
   border-radius: 50px;
   right: 26px;
-  top: 53px;
+  top: 75px;
   box-shadow: 4px 6px 6px #b7b7b7;
   cursor: pointer;
 }
 .dashboard .edit-button.editing {
   box-shadow: 1px 1px 6px #b7b7b7;
-  top: 58px;
+  top: 80px;
   right: 24px;
 }
 .dashboard .edit-button .fa {
@@ -34,13 +34,13 @@
   width: 60px;
   border-radius: 50px;
   right: 26px;
-  top: 135px;
+  top: 147px;
   box-shadow: 4px 6px 6px #b7b7b7;
   cursor: pointer;
 }
 .dashboard .move-button.moving {
   box-shadow: 1px 1px 6px #b7b7b7;
-  top: 140px;
+  top: 152px;
   right: 24px;
 }
 .dashboard .move-button .fa {
@@ -54,6 +54,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  top: 50px;
   overflow-y: auto;
 }
 .dashboard.editing .dashboard-container {
@@ -116,6 +117,7 @@
   top: 10px;
   color: #a7a7a7;
   cursor: pointer;
+  z-index: 2px;
 }
 .dashboard .widget .widgetTitle {
   position: absolute;
@@ -150,7 +152,6 @@
   height: 21px;
   width: 10px;
   position: absolute;
-  background-image: url(grip.png);
   background-repeat: no-repeat;
   z-index: 2;
   margin: 7px;

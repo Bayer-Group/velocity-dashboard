@@ -88,7 +88,7 @@ class Dashboard extends React.Component {
 
         allConfigs.splice(index, 1)
 
-        this.props.onConfigChange(allConfigs)
+        return this.props.onConfigChange(allConfigs)
     }
 
     configChange(instanceId, newConfig) {
@@ -102,7 +102,7 @@ class Dashboard extends React.Component {
             config: newConfig
         }
 
-        this.props.onConfigChange(allConfigs)
+        return this.props.onConfigChange(allConfigs)
     }
 
     addWidget(id) {
@@ -112,7 +112,7 @@ class Dashboard extends React.Component {
             instanceId: Math.floor(Math.random() * 100000),
             config: {}
         })
-        this.props.onConfigChange(config)
+        return this.props.onConfigChange(config)
     }
 
     moveWidget(draggingWidgetId, targetWidgetId) {
@@ -124,7 +124,7 @@ class Dashboard extends React.Component {
         }
 
         config.splice(targetIndex, 0, config.splice(sourceIndex, 1)[0])
-        this.props.onConfigChange(config)
+        return this.props.onConfigChange(config)
     }
 
     renderAddWidgets() {
@@ -212,7 +212,7 @@ class Dashboard extends React.Component {
                         <i className="fa fa-arrows" />
                     </div>
                 ) : null}
-                <div className="dashboard-container" style={{ top: titleHeight }}>
+                <div className="dashboard-container">
                     <div
                         className={`dashboard-content columns-${this.layout.columnCount()}`}
                         style={{ width: contentWidth }}>

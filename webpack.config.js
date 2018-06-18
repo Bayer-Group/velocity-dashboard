@@ -33,7 +33,6 @@ const example = _.extend({}, base, {
 const lib = _.extend({}, base, {
     entry: {
         main: [
-            "@babel/polyfill",
             `${path.dirname(__filename)}/public/scripts/dashboard/index`
         ]
     },
