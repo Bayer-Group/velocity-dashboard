@@ -1,4 +1,4 @@
---compilers coffee:coffee-script/register,cjsx:coffee-react/register
+--require @babel/register
 --recursive
 --colors
 --reporter list
