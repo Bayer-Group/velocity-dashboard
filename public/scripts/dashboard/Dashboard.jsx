@@ -44,7 +44,7 @@ class Dashboard extends React.Component {
         )
     }
 
-    childComponentsForConfig(components, config, editMode, moveMode, sizeConfig, columnCount) {
+    childComponentsForConfig(components, config, editMode, moveMode, sizeConfig, columnCount,doneButtonClass) {
         const componentsById = getComponentsById(components)
         const instances = config.map((widget) => {
             if (componentsById[widget.widgetId]) {
@@ -61,7 +61,8 @@ class Dashboard extends React.Component {
                     instanceId: widget.instanceId,
                     sizeConfig,
                     columnCount,
-                    onDrop: this.moveWidget
+                    onDrop: this.moveWidget,
+                    doneButtonClass
                 })
             }
         })
@@ -171,7 +172,8 @@ class Dashboard extends React.Component {
             widgetWidth = defaults.widgetWidth,
             widgetMargin = defaults.margin,
             titleHeight = 50,
-            maxColumns = 5
+            maxColumns = 5,
+            doneButtonClass=''
         } = this.props
 
         let { editMode, moveMode, componentWidth } = this.state
@@ -190,7 +192,8 @@ class Dashboard extends React.Component {
             editMode,
             moveMode,
             sizeConfig,
-            this.layout.columnCount()
+            this.layout.columnCount(),
+            doneButtonClass
         )
 
         let contentWidth = this.layout.columnCount() * (widgetWidth + widgetMargin) - widgetMargin
