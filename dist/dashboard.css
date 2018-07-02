@@ -6,11 +6,11 @@
 .dashboard .edit-button {
   background-color: #2980b9;
   position: fixed;
-  z-index: 2;
+  z-index: 10;
   height: 60px;
   width: 60px;
   border-radius: 50px;
-  right: 26px;
+  right: 17px;
   top: 75px;
   box-shadow: 4px 6px 6px #b7b7b7;
   cursor: pointer;
@@ -18,7 +18,7 @@
 .dashboard .edit-button.editing {
   box-shadow: 1px 1px 6px #b7b7b7;
   top: 80px;
-  right: 24px;
+  right: 15px;
 }
 .dashboard .edit-button .fa {
   color: white;
@@ -27,13 +27,13 @@
   margin-left: 10px;
 }
 .dashboard .move-button {
-  background-color: #848484;
+  background-color: #7ab6c1;
   position: fixed;
-  z-index: 2;
+  z-index: 10;
   height: 60px;
   width: 60px;
   border-radius: 50px;
-  right: 26px;
+  right: 17px;
   top: 147px;
   box-shadow: 4px 6px 6px #b7b7b7;
   cursor: pointer;
@@ -41,7 +41,7 @@
 .dashboard .move-button.moving {
   box-shadow: 1px 1px 6px #b7b7b7;
   top: 152px;
-  right: 24px;
+  right: 15px;
 }
 .dashboard .move-button .fa {
   color: white;
@@ -98,11 +98,19 @@
   left: 0;
   right: 0;
 }
+.dashboard .widget .widget-inner .edit-overlay {
+  opacity: 0.5;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: #000000;
+}
 .dashboard .widget .edit-widget-button {
   position: absolute;
   right: 30px;
   top: 10px;
-  color: #a7a7a7;
+  color: #e4e4e4;
   cursor: pointer;
 }
 .dashboard .widget .edit-widget-button.close-button {
@@ -115,7 +123,7 @@
   position: absolute;
   right: 10px;
   top: 10px;
-  color: #a7a7a7;
+  color: #e4e4e4;
   cursor: pointer;
   z-index: 2;
 }
