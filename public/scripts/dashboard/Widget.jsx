@@ -36,20 +36,20 @@ class Widget extends React.Component {
     hide() {}
 
     renderEditButton() {
-        const { dashEditable, draggable, configComp, onHide } = this.props
+        const { dashEditable, draggable, configComp, onHide, doneButtonClass } = this.props
         if (dashEditable && !draggable) {
             if (this.state.editMode) {
                 return (
-                    <a className="edit-widget-button close-button" onClick={this.toggleEditMode}>
+                    <a className={`edit-widget-button close-button ${doneButtonClass}`} onClick={this.toggleEditMode}>
                         done
                     </a>
                 )
             }
             return (
-                <span>
+                <div className="edit-overlay">
                     {configComp ? <i className="fa fa-cog edit-widget-button" onClick={this.toggleEditMode} /> : null}
                     <i className="fa fa-times hide-widget-button" onClick={onHide} />
-                </span>
+                </div>
             )
         }
     }
@@ -93,7 +93,8 @@ class Widget extends React.Component {
             columnCount,
             connectDragSource,
             connectDropTarget,
-            isOver
+            isOver,
+            doneButtonClass
         } = this.props
         width = _.get(config, "width", width) || 1
         height = _.get(config, "height", height) || 1

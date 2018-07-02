@@ -42,7 +42,8 @@ class DashboardExample extends React.Component {
                 widgetWidth={250}
                 widgetMargin={15}
                 titleHeight={50}
-                maxColumns={5}>
+                maxColumns={5}
+                doneButtonClass='btn btn-primary'>
                 <Widget
                     id="accident"
                     contentComp={() => (

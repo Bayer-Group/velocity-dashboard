@@ -88,6 +88,7 @@ class MainDashboard extends React.Component {
 | widgetMargin     | 15  | gap between widgets in pixels |
 | titleHeight      | 50  | height of the title |
 | maxColumns       | 5   | when displayed on a high-resolution (wide) screen, limit the number of columns to this value (for usability/ascetics) |
+| doneButtonClass  |  -  | custom class to override the 'done' button rendered on edit widget config e.g. 'btn btn-primary' |
     
 #### config
 
