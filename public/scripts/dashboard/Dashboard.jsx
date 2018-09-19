@@ -7,8 +7,8 @@ const _ = require("lodash")
 const { CSSTransitionGroup } = require("react-transition-group")
 const AddWidgetPanel = require("./AddWidgetPanel")
 const { DragDropContext } = require("react-dnd")
-import HTML5Backend from "react-dnd-html5-backend"
-import windowSize from "react-window-size"
+const HTML5Backend = require("react-dnd-html5-backend").default
+const windowSize = require("react-window-size").default
 
 const defaults = {
     widgetWidth: 250,
