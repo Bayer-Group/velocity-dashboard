@@ -32,18 +32,18 @@ app.use(`${appBaseUrl}/styles/fonts`, express.static(path.join(__dirname, './nod
 const generateHtml = () => `
     <!DOCTYPE html>
     <html>
-    <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <title>velocity-dashboard</title>
-    <link rel="stylesheet" href="${appBaseUrl}/styles/font-awesome.css"/>
-    <link rel="stylesheet" href="${appBaseUrl}/styles/style.css"/>
-    </head>
-            <body>
-                <div class="nav"></div>
-                <div class="contents"></div>
-                <script type="text/javascript" src="${appBaseUrl}/scripts/example.js"></script>
-            </body>
+        <head>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <title>velocity-dashboard</title>
+            <link rel="stylesheet" href="${appBaseUrl}/styles/font-awesome.css"/>
+            <link rel="stylesheet" href="${appBaseUrl}/styles/style.css"/>
+        </head>
+        <body>
+            <div class="nav"></div>
+            <div class="contents"></div>
+            <script type="text/javascript" src="${appBaseUrl}/scripts/example.js"></script>
+        </body>
     </html>
     `
 

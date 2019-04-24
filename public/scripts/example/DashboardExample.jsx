@@ -43,6 +43,7 @@ class DashboardExample extends React.Component {
                 widgetMargin={15}
                 titleHeight={50}
                 maxColumns={5}
+                ErrorComponent={({error}) => <div>Unhandled Error: {error}</div>}
                 doneButtonClass='btn btn-primary'>
                 <Widget
                     id="accident"

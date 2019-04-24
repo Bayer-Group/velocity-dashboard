@@ -7,7 +7,8 @@ class Widget extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            editMode: false
+            editMode: false,
+            currentError: null
         }
     }
 
@@ -54,8 +55,17 @@ class Widget extends React.Component {
         }
     }
 
+    componentDidCatch(error, info) {
+        this.setState({currentError: error})
+        console.error(error, info)
+    }
+
     renderComponent() {
         const { config, instanceId, onConfigChange, dashEditable, configComp, contentComp } = this.props
+        if (this.state.currentError) {
+            return this.props.ErrorComponent ? <this.props.ErrorComponent error={this.state.currentError}/> :
+                <div>Error</div>
+        }
         if (dashEditable && this.state.editMode) {
             if (configComp) {
                 return (
