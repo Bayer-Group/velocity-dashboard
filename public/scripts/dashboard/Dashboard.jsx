@@ -1,5 +1,4 @@
 const React = require("react")
-const ReactDOM = require("react-dom")
 
 const Title = require("./Title")
 const Layout = require("./Layout")
@@ -61,6 +60,7 @@ class Dashboard extends React.Component {
                     instanceId: widget.instanceId,
                     sizeConfig,
                     columnCount,
+                    ErrorComponent: this.props.ErrorComponent,
                     onDrop: this.moveWidget,
                     doneButtonClass
                 })
@@ -182,7 +182,6 @@ class Dashboard extends React.Component {
 
         let sizeConfig = { widgetHeight, widgetWidth, widgetMargin, titleHeight, maxColumns }
 
-        // this.layout = layout = new Layout(sizeConfig)
         this.layout = new Layout(sizeConfig)
         this.layout.reset(this.props.componentWidthForTesting || componentWidth)
 
