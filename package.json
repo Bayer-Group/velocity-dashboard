@@ -3,8 +3,8 @@
   "version": "2.0.3",
   "license": "BSD-3-Clause",
   "scripts": {
-    "start": "NODE_ENV=production node ./bin/www",
-    "dev": "cross-env NODE_ENV=development node ./bin/www",
+    "start": "NODE_ENV=production node ./server",
+    "dev": "cross-env NODE_ENV=development node ./server",
     "clean": "rimraf public/styles/style.css public/scripts/bundle.js public/scripts/bundle.js.map",
     "lessc": "cross-env lessc ./public/styles/style.less ./public/styles/style.css && cross-env lessc ./public/styles/dashboard.less ./public/styles/dashboard.css",
     "package": "cross-env NODE_ENV=production npm run lessc && webpack && cp ./node_modules/font-awesome/fonts/* ./docs/fonts/ && cp ./node_modules/weather-icons/font/* ./docs/fonts/ && cp public/styles/*.css docs && cp public/styles/dashboard.css dist && cp public/styles/*.png docs && cp ./dist/example.js docs",
@@ -57,7 +57,6 @@
     "less-middleware": "~3.0.1",
     "mocha": "~5.2.0",
     "moment": "~2.22.2",
-    "piping": "~1.0.0-rc.4",
     "proxyquire": "^1.7.9",
     "react-addons-shallow-compare": "~15.6.2",
     "react-google-charts": "~1.6.6",
